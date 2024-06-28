@@ -25,10 +25,10 @@ class Comments extends Component {
   }
 
   deleteComment = commentId => {
-    const {commentList} = this.state
+    const {commentsList} = this.state
 
     this.setState({
-      commentList: commentList.filter(comment => comment.id !== commentId),
+      commentsList: commentsList.filter(comment => comment.id !== commentId),
     })
   }
 
@@ -44,9 +44,9 @@ class Comments extends Component {
   }
 
   renderCommentsList = () => {
-    const {commentList} = this.state
+    const {commentsList} = this.state
 
-    return commentList.map(eachComment => (
+    return commentsList.map(eachComment => (
       <CommentItem
         key={eachComment.id}
         commentDetails={eachComment}
@@ -76,7 +76,7 @@ class Comments extends Component {
     }
 
     this.setState(prevState => ({
-      commentList: [...prevState.commentsList, newComment],
+      commentsList: [...prevState.commentsList, newComment],
       nameInput: '',
       commentInput: '',
     }))
@@ -95,7 +95,7 @@ class Comments extends Component {
   }
 
   render() {
-    const {nameInput, commentInput, commentList} = this.state
+    const {nameInput, commentInput, commentsList} = this.state
 
     return (
       <div className="app-container">
@@ -104,14 +104,14 @@ class Comments extends Component {
           <div className="comments-inputs">
             <form className="form" onSubmit={this.onAddComment}>
               <p className="form-description">
-                Say somthing about 4.0 Technologies
+                Say Something
               </p>
               <input
                 type="text"
                 className="name-input"
                 placeholder=" Your Name"
                 value={nameInput}
-                onChange={this.onChangeCommentInput}
+                onChange={this.onChangeNameInput}
               />
               <textarea
                 placeholder="Your Comment"
@@ -126,13 +126,13 @@ class Comments extends Component {
             </form>
             <img
               className="image"
-              alt="comment"
+              alt="comments"
               src="https://assets.ccbp.in/frontend/react-js/comments-app/comments-img.png"
             />
           </div>
           <hr className="line" />
           <p className="heading">
-            <span className="comment-count">{commentList.length}</span>
+            <span className="comment-count">{commentsList.length}</span>
             Comments
           </p>
           <ul className="comment-list">{this.renderCommentsList()}</ul>
